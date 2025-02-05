@@ -14,7 +14,8 @@ namespace GroceryStoreDiscountCalculator
         static void Main(string[] args)
         {
             ArrayList items = new ArrayList();
-            CannedGoods cg = new CannedGoods();
+            AddCart cart = new AddCart();
+            CannedGoods cg = new CannedGoods(cart);
             Fruits fruit = new Fruits();
 
 
@@ -51,7 +52,8 @@ namespace GroceryStoreDiscountCalculator
                         break;
                     case "5":
                         break;
-                    case "6":
+                    case "x":
+                        cart.showCart();
                         break;
 
                 }
@@ -65,21 +67,45 @@ namespace GroceryStoreDiscountCalculator
      // -ONCE CONFIRMED OR CUSTOMER AGREE TO CHECK OUT, PRINT RECEIPT
      //[RECEIPT : QUANTITY , PRODUCT, PRICE, SUBTOTAL, DISCOUNT , TOTAL]
     */
-    public class AddCart {
-        public void addCart(object[] product) {
-            ArrayList addTOCart = new ArrayList();
-            addTOCart.Add(product);
+    public class AddCart
+    {
+        ArrayList addToCart = new ArrayList(); 
 
+        public void addCart(object[] product)
+        {
+            addToCart.Add(product);
+            Console.WriteLine("Product added to cart!");
         }
-        public void showCart() {
-            //
+
+        public void showCart()
+        {
+            Console.WriteLine("================================ YOUR CART ==================================");
+            if (addToCart.Count == 0)
+            {
+                Console.WriteLine("Your cart is empty...");
+            }
+            else
+            {
+                foreach (object[] product in addToCart)
+                {
+                    Console.WriteLine($"{product[0],-50} PHP {product[1],8:F2}  Quantity: {product[2]}");
+                }
+            }
+            Console.WriteLine("=============================================================================");
         }
-    } 
+    }
     public class CannedGoods
     {
+        private AddCart cart; 
+        public CannedGoods(AddCart cart)
+        {
+            this.cart = cart;  
+        }
+
         public void cgMenu()
         {
-            AddCart cart = new AddCart();
+            
+
             ArrayList products = new ArrayList()
             {
                 new object[] { "555 Sardines Spanish Style (155g)", 90.00, 0 },
@@ -149,16 +175,18 @@ namespace GroceryStoreDiscountCalculator
                         string input = Console.ReadLine();
 
                         if (input.Equals("1")) {
-                            object[] product = (object[])products[0];
+                           object[] product = (object[])products[0];
 
-                            Console.WriteLine("How many would you like to buy: ");
+                            Console.Write("How many would you like to buy: ");
                             string quantity1 = Console.ReadLine();
 
-                            product[3] = quantity1;
+                            product[2] = quantity1;
                             cart.addCart(product);
+                            continue;
                         }
                         if (input.Equals("2")) {
-                            Console.WriteLine();
+                            Console.Clear();
+                            continue;
                         }
                         break;
                     case "2":
