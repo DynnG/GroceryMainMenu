@@ -18,8 +18,8 @@ namespace GroceryStoreDiscountCalculator
             CannedGoods cg = new CannedGoods(cart);
             Fruits fruit = new Fruits();
 
-
-            while (true)
+            Boolean valid = true;
+            while (valid)
             {
                 Console.WriteLine("====== GROCERY MENU CATEGORIES ======");
                 Console.WriteLine("[1] Canned Goods");
@@ -55,6 +55,9 @@ namespace GroceryStoreDiscountCalculator
                     case "x":
                         cart.showCart();
                         break;
+                    default:
+                        Console.WriteLine("\n----------- INVALID INPUT> PLEAASE TRY AGAIN -----------\n");
+                        break;
 
                 }
             }
@@ -74,12 +77,12 @@ namespace GroceryStoreDiscountCalculator
         public void addCart(object[] product)
         {
             addToCart.Add(product);
-            Console.WriteLine("Product added to cart!");
+            Console.WriteLine("\n------- Product added to cart! -------\n");
         }
 
         public void showCart()
         {
-            Console.WriteLine("================================ YOUR CART ==================================");
+            Console.WriteLine("\n================================ YOUR CART ==================================");
             if (addToCart.Count == 0)
             {
                 Console.WriteLine("Your cart is empty...");
@@ -91,7 +94,7 @@ namespace GroceryStoreDiscountCalculator
                     Console.WriteLine($"{product[0],-50} PHP {product[1],8:F2}  Quantity: {product[2]}");
                 }
             }
-            Console.WriteLine("=============================================================================");
+            Console.WriteLine("=============================================================================\n\n");
         }
     }
     public class CannedGoods
@@ -103,8 +106,7 @@ namespace GroceryStoreDiscountCalculator
         }
 
         public void cgMenu()
-        {
-            
+        {         
 
             ArrayList products = new ArrayList()
             {
@@ -113,18 +115,8 @@ namespace GroceryStoreDiscountCalculator
                 new object[] { "Argentina Luncheon Meat (12oz)", 330.00, 0 },
                 new object[] { "Blue Bay Fried Sardines Hot & Spicy", 82.00, 0},
                 new object[] { "Blue Bay Sardines in Tomato Sauce", 82.00, 0 },
-                new object[] { "Century Club Can Premium Sardines in Olive Oil", 180.00, 0 },
-                new object[] { "Century Club Can Premium Sardines in Tomato Sauce", 180.00, 0 },
-                new object[] { "Century Tuna - Corned Tuna Style", 170.00, 0 },
-                new object[] { "Century Tuna - Chili Corned Tuna Style", 180.00, 0 },
-                new object[] { "Century Tuna - Tuna Adobo Style", 136.00, 0 },
-                new object[] { "Century Tuna - Tuna Afritada Style", 163.00, 0 },
-                new object[] { "Century Tuna - Tuna Caldereta Style", 163.00, 0 },
-                new object[] { "Century Tuna - Tuna Flakes in Soya Oil", 190.00, 0 },
-                new object[] { "Century Tuna - Tuna Hot & Spicy Style", 200.00, 0 },
-                new object[] { "Century Tuna - Tuna Mechado Style", 180.00, 0 },
-                new object[] { "Century Tuna - Tuna with Calamansi (Lime)", 210.00, 0 },
-                new object[] { "Ligo Sardines in Tomato Sauce Extra Hot", 50.00, 0 },
+                new object[] { "Century Club Can Premium Sardines in Olive Oil", 180.00, 0 },                   
+                new object[] { "Century Tuna - Tuna with Calamansi (Lime)", 210.00, 0 },                
                 new object[] { "Ligo Sardines Regular (Green, Small)", 92.00, 0 },
                 new object[] { "Ligo Sardines with Chili (Red, Small)", 95.00, 0 },
                 new object[] { "Maling Luncheon Meat Premium", 290.00, 0 }
@@ -170,8 +162,8 @@ namespace GroceryStoreDiscountCalculator
                         break;
                     case "1":
                         Console.WriteLine("[1]Input Quantity");
-                        Console.WriteLine("[2] return");
-                        Console.Write("Enter 1 to set quantity or 2 to return: ");
+                        Console.WriteLine("[2] return");                        
+                        Console.Write("\nEnter 1 to set quantity or 2 to return: ");
                         string input = Console.ReadLine();
 
                         if (input.Equals("1")) {
@@ -179,9 +171,9 @@ namespace GroceryStoreDiscountCalculator
 
                             Console.Write("How many would you like to buy: ");
                             string quantity1 = Console.ReadLine();
-
+                            Console.Clear();
                             product[2] = quantity1;
-                            cart.addCart(product);
+                            cart.addCart(product);                  
                             continue;
                         }
                         if (input.Equals("2")) {
@@ -190,13 +182,211 @@ namespace GroceryStoreDiscountCalculator
                         }
                         break;
                     case "2":
-                        Console.WriteLine("[1]Quantity");
+                        Console.WriteLine("[1]Input Quantity");
                         Console.WriteLine("[2] return");
-                        Console.Write("Enter 1 to set quantity or 2 to return: ");
-                        string quantity2 = Console.ReadLine();
+                        Console.Write("\nEnter 1 to set quantity or 2 to return: ");
+                        string input1 = Console.ReadLine();
+
+                        if (input1.Equals("1"))
+                        {
+                            object[] product = (object[])products[1];
+
+                            Console.Write("How many would you like to buy: ");
+                            string quantity1 = Console.ReadLine();
+                            Console.Clear();
+                            product[2] = quantity1;
+                            cart.addCart(product);                            
+                            continue;
+                        }
+                        if (input1.Equals("2"))
+                        {
+                            Console.Clear();
+                            continue;
+                        }
                         break;
                     case "3":
-                        
+                        Console.WriteLine("[1]Input Quantity");
+                        Console.WriteLine("[2] return");
+                        Console.Write("\nEnter 1 to set quantity or 2 to return: ");
+                        string input2 = Console.ReadLine();
+
+                        if (input2.Equals("1"))
+                        {
+                            object[] product = (object[])products[2];
+
+                            Console.Write("How many would you like to buy: ");
+                            string quantity1 = Console.ReadLine();
+                            Console.Clear();
+                            product[2] = quantity1;
+                            cart.addCart(product);
+                            continue;
+                        }
+                        if (input2.Equals("2"))
+                        {
+                            Console.Clear();
+                            continue;
+                        }
+                        break;
+                    case "4":
+                        Console.WriteLine("[1]Input Quantity");
+                        Console.WriteLine("[2] return");
+                        Console.Write("\nEnter 1 to set quantity or 2 to return: ");
+                        string input3 = Console.ReadLine();
+
+                        if (input3.Equals("1"))
+                        {
+                            object[] product = (object[])products[3];
+
+                            Console.Write("How many would you like to buy: ");
+                            string quantity1 = Console.ReadLine();
+                            Console.Clear();
+                            product[2] = quantity1;
+                            cart.addCart(product);
+                            continue;
+                        }
+                        if (input3.Equals("2"))
+                        {
+                            Console.Clear();
+                            continue;
+                        }
+                        break;
+                    case "5":
+                        Console.WriteLine("[1]Input Quantity");
+                        Console.WriteLine("[2] return");
+                        Console.Write("\nEnter 1 to set quantity or 2 to return: ");
+                        string input4 = Console.ReadLine();
+
+                        if (input4.Equals("1"))
+                        {
+                            object[] product = (object[])products[4];
+
+                            Console.Write("How many would you like to buy: ");
+                            string quantity1 = Console.ReadLine();
+                            Console.Clear();
+                            product[2] = quantity1;
+                            cart.addCart(product);
+                            continue;
+                        }
+                        if (input4.Equals("2"))
+                        {
+                            Console.Clear();
+                            continue;
+                        }
+                        break;
+                    case "6":
+                        Console.WriteLine("[1]Input Quantity");
+                        Console.WriteLine("[2] return");
+                        Console.Write("\nEnter 1 to set quantity or 2 to return: ");
+                        string input5 = Console.ReadLine();
+
+                        if (input5.Equals("1"))
+                        {
+                            object[] product = (object[])products[5];
+
+                            Console.Write("How many would you like to buy: ");
+                            string quantity1 = Console.ReadLine();
+                            Console.Clear();
+                            product[2] = quantity1;
+                            cart.addCart(product);
+                            continue;
+                        }
+                        if (input5.Equals("2"))
+                        {
+                            Console.Clear();
+                            continue;
+                        }
+                        break;
+                    case "7":
+                        Console.WriteLine("[1]Input Quantity");
+                        Console.WriteLine("[2] return");
+                        Console.Write("\nEnter 1 to set quantity or 2 to return: ");
+                        string input6 = Console.ReadLine();
+
+                        if (input6.Equals("1"))
+                        {
+                            object[] product = (object[])products[6];
+
+                            Console.Write("How many would you like to buy: ");
+                            string quantity1 = Console.ReadLine();
+                            Console.Clear();
+                            product[2] = quantity1;
+                            cart.addCart(product);
+                            continue;
+                        }
+                        if (input6.Equals("2"))
+                        {
+                            Console.Clear();
+                            continue;
+                        }
+                        break;
+                    case "8":
+                        Console.WriteLine("[1]Input Quantity");
+                        Console.WriteLine("[2] return");
+                        Console.Write("\nEnter 1 to set quantity or 2 to return: ");
+                        string input7 = Console.ReadLine();
+
+                        if (input7.Equals("1"))
+                        {
+                            object[] product = (object[])products[7];
+
+                            Console.Write("How many would you like to buy: ");
+                            string quantity1 = Console.ReadLine();
+                            Console.Clear();
+                            product[2] = quantity1;
+                            cart.addCart(product);
+                            continue;
+                        }
+                        if (input7.Equals("2"))
+                        {
+                            Console.Clear();
+                            continue;
+                        }
+                        break;
+                    case "9":
+                        Console.WriteLine("[1]Input Quantity");
+                        Console.WriteLine("[2] return");
+                        Console.Write("\nEnter 1 to set quantity or 2 to return: ");
+                        string input8 = Console.ReadLine();
+
+                        if (input8.Equals("1"))
+                        {
+                            object[] product = (object[])products[8];
+
+                            Console.Write("How many would you like to buy: ");
+                            string quantity1 = Console.ReadLine();
+                            Console.Clear();
+                            product[2] = quantity1;
+                            cart.addCart(product);
+                            continue;
+                        }
+                        if (input8.Equals("2"))
+                        {
+                            Console.Clear();
+                            continue;
+                        }
+                        break;
+                    case "10":
+                        Console.WriteLine("[1]Input Quantity");
+                        Console.WriteLine("[2] return");
+                        Console.Write("\nEnter 1 to set quantity or 2 to return: ");
+                        string input9 = Console.ReadLine();
+
+                        if (input9.Equals("1"))
+                        {
+                            object[] product = (object[])products[9];
+
+                            Console.Write("How many would you like to buy: ");
+                            string quantity1 = Console.ReadLine();
+                            Console.Clear();
+                            product[2] = quantity1;
+                            cart.addCart(product);
+                            continue;
+                        }
+                        if (input9.Equals("2"))
+                        {
+                            Console.Clear();
+                            continue;
+                        }
                         break;
                     case "x":
                         Console.WriteLine();
@@ -318,8 +508,5 @@ namespace GroceryStoreDiscountCalculator
             }
         }
     }
-
-
-
 }
 
