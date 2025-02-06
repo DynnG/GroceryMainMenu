@@ -13,10 +13,11 @@ namespace GroceryStoreDiscountCalculator
     {
         static void Main(string[] args)
         {
-            ArrayList items = new ArrayList();
+            //ArrayList items = new ArrayList();
             AddCart cart = new AddCart();
             CannedGoods cg = new CannedGoods(cart);
-            Fruits fruit = new Fruits();
+            Fruits fruit = new Fruits(cart);
+            Vegetables veggie = new Vegetables(cart);
 
             Boolean valid = true;
             while (valid)
@@ -49,11 +50,32 @@ namespace GroceryStoreDiscountCalculator
                         fruit.fruitsMenu();
                         break;
                     case "4":
+                        veggie.veggieMenu();
                         break;
                     case "5":
                         break;
                     case "x":
                         cart.showCart();
+                        Console.WriteLine("[1] Proceed CheckOut");
+                        Console.WriteLine("[2] Return");
+
+                        Console.Write("\nSelect option: ");
+                        string input = Console.ReadLine();
+                        if (input.Equals("1"))
+                        {
+                            //process
+                        }
+                        else if (input.Equals("2"))
+                        {
+                            Console.Clear();
+                            continue;
+                           
+                        }
+                        else {
+                            Console.WriteLine("[INVALID INPUT, PLEASE TRY AGAIN]");
+                        }
+                        valid = false;
+
                         break;
                     default:
                         Console.WriteLine("\n----------- INVALID INPUT> PLEAASE TRY AGAIN -----------\n");
@@ -83,19 +105,27 @@ namespace GroceryStoreDiscountCalculator
         public void showCart()
         {
             Console.WriteLine("\n================================ YOUR CART ==================================");
-            if (addToCart.Count == 0)
-            {
-                Console.WriteLine("Your cart is empty...");
-            }
-            else
+            if (addToCart.Count != 0)
             {
                 foreach (object[] product in addToCart)
                 {
                     Console.WriteLine($"{product[0],-50} PHP {product[1],8:F2}  Quantity: {product[2]}");
+
                 }
+                Console.WriteLine("=============================================================================\n");
+                Console.WriteLine("\nSubtotal: ");
             }
+            else
+            {
+                Console.WriteLine("Your cart is empty...");
+
+            }
+
             Console.WriteLine("=============================================================================\n\n");
         }
+       // public void subTotal() { //continue
+        
+        //}
     }
     public class CannedGoods
     {
@@ -132,7 +162,7 @@ namespace GroceryStoreDiscountCalculator
                     object[] product = (object[])products[i];
                     Console.WriteLine($"{i + 1,2}. {product[0],-60} PHP {product[1],8:F2}");
                 }
-                Console.WriteLine("[x] Returnt to Main Menu");
+                Console.WriteLine("[x] Return to Main Menu");
                 Console.WriteLine("==============================================================================");
                 Console.Write("Enter product number: ");
                 string choice = Console.ReadLine();
@@ -161,9 +191,9 @@ namespace GroceryStoreDiscountCalculator
                         }
                         break;
                     case "1":
-                        Console.WriteLine("[1]Input Quantity");
-                        Console.WriteLine("[2] return");                        
-                        Console.Write("\nEnter 1 to set quantity or 2 to return: ");
+                        Console.WriteLine("[1] Input Quantity");
+                        Console.WriteLine("[x] Return");                        
+                        Console.Write("\nSelect option: ");
                         string input = Console.ReadLine();
 
                         if (input.Equals("1")) {
@@ -176,15 +206,15 @@ namespace GroceryStoreDiscountCalculator
                             cart.addCart(product);                  
                             continue;
                         }
-                        if (input.Equals("2")) {
+                        if (input.Equals("x") || input.Equals("X")) {
                             Console.Clear();
                             continue;
                         }
                         break;
                     case "2":
-                        Console.WriteLine("[1]Input Quantity");
-                        Console.WriteLine("[2] return");
-                        Console.Write("\nEnter 1 to set quantity or 2 to return: ");
+                        Console.WriteLine("[1] Input Quantity");
+                        Console.WriteLine("[x] Return");
+                        Console.Write("\nSelect option: ");
                         string input1 = Console.ReadLine();
 
                         if (input1.Equals("1"))
@@ -198,16 +228,16 @@ namespace GroceryStoreDiscountCalculator
                             cart.addCart(product);                            
                             continue;
                         }
-                        if (input1.Equals("2"))
+                        if (input1.Equals("x") || input1.Equals("X"))
                         {
                             Console.Clear();
                             continue;
                         }
                         break;
                     case "3":
-                        Console.WriteLine("[1]Input Quantity");
-                        Console.WriteLine("[2] return");
-                        Console.Write("\nEnter 1 to set quantity or 2 to return: ");
+                        Console.WriteLine("[1] Input Quantity");
+                        Console.WriteLine("[x] Return");
+                        Console.Write("\nSelect option: ");
                         string input2 = Console.ReadLine();
 
                         if (input2.Equals("1"))
@@ -221,16 +251,16 @@ namespace GroceryStoreDiscountCalculator
                             cart.addCart(product);
                             continue;
                         }
-                        if (input2.Equals("2"))
+                        if (input2.Equals("x") || input2.Equals("X"))
                         {
                             Console.Clear();
                             continue;
                         }
                         break;
                     case "4":
-                        Console.WriteLine("[1]Input Quantity");
-                        Console.WriteLine("[2] return");
-                        Console.Write("\nEnter 1 to set quantity or 2 to return: ");
+                        Console.WriteLine("[1] Input Quantity");
+                        Console.WriteLine("[x] Return");
+                        Console.Write("\nSelect option: ");
                         string input3 = Console.ReadLine();
 
                         if (input3.Equals("1"))
@@ -244,16 +274,16 @@ namespace GroceryStoreDiscountCalculator
                             cart.addCart(product);
                             continue;
                         }
-                        if (input3.Equals("2"))
+                        if (input3.Equals("x") || input3.Equals("X"))
                         {
                             Console.Clear();
                             continue;
                         }
                         break;
                     case "5":
-                        Console.WriteLine("[1]Input Quantity");
-                        Console.WriteLine("[2] return");
-                        Console.Write("\nEnter 1 to set quantity or 2 to return: ");
+                        Console.WriteLine("[1] Input Quantity");
+                        Console.WriteLine("[x] Return");
+                        Console.Write("\nSelect option: ");
                         string input4 = Console.ReadLine();
 
                         if (input4.Equals("1"))
@@ -267,16 +297,16 @@ namespace GroceryStoreDiscountCalculator
                             cart.addCart(product);
                             continue;
                         }
-                        if (input4.Equals("2"))
+                        if (input4.Equals("x") || input4.Equals("X"))
                         {
                             Console.Clear();
                             continue;
                         }
                         break;
                     case "6":
-                        Console.WriteLine("[1]Input Quantity");
-                        Console.WriteLine("[2] return");
-                        Console.Write("\nEnter 1 to set quantity or 2 to return: ");
+                        Console.WriteLine("[1] Input Quantity");
+                        Console.WriteLine("[x] Return");
+                        Console.Write("\nSelect option: ");
                         string input5 = Console.ReadLine();
 
                         if (input5.Equals("1"))
@@ -290,16 +320,16 @@ namespace GroceryStoreDiscountCalculator
                             cart.addCart(product);
                             continue;
                         }
-                        if (input5.Equals("2"))
+                        if (input5.Equals("x") || input5.Equals("X"))
                         {
                             Console.Clear();
                             continue;
                         }
                         break;
                     case "7":
-                        Console.WriteLine("[1]Input Quantity");
-                        Console.WriteLine("[2] return");
-                        Console.Write("\nEnter 1 to set quantity or 2 to return: ");
+                        Console.WriteLine("[1] Input Quantity");
+                        Console.WriteLine("[x] Return");
+                        Console.Write("\nSelect option: ");
                         string input6 = Console.ReadLine();
 
                         if (input6.Equals("1"))
@@ -313,16 +343,16 @@ namespace GroceryStoreDiscountCalculator
                             cart.addCart(product);
                             continue;
                         }
-                        if (input6.Equals("2"))
+                        if (input6.Equals("x") || input6.Equals("X"))
                         {
                             Console.Clear();
                             continue;
                         }
                         break;
                     case "8":
-                        Console.WriteLine("[1]Input Quantity");
-                        Console.WriteLine("[2] return");
-                        Console.Write("\nEnter 1 to set quantity or 2 to return: ");
+                        Console.WriteLine("[1] Input Quantity");
+                        Console.WriteLine("[x] Return");
+                        Console.Write("\nSelect option: ");
                         string input7 = Console.ReadLine();
 
                         if (input7.Equals("1"))
@@ -336,16 +366,16 @@ namespace GroceryStoreDiscountCalculator
                             cart.addCart(product);
                             continue;
                         }
-                        if (input7.Equals("2"))
+                        if (input7.Equals("x") || input7.Equals("X"))
                         {
                             Console.Clear();
                             continue;
                         }
                         break;
                     case "9":
-                        Console.WriteLine("[1]Input Quantity");
-                        Console.WriteLine("[2] return");
-                        Console.Write("\nEnter 1 to set quantity or 2 to return: ");
+                        Console.WriteLine("[1] Input Quantity");
+                        Console.WriteLine("[x] Return");
+                        Console.Write("\nSelect option: ");
                         string input8 = Console.ReadLine();
 
                         if (input8.Equals("1"))
@@ -359,16 +389,16 @@ namespace GroceryStoreDiscountCalculator
                             cart.addCart(product);
                             continue;
                         }
-                        if (input8.Equals("2"))
+                        if (input8.Equals("x") || input8.Equals("X"))
                         {
                             Console.Clear();
                             continue;
                         }
                         break;
                     case "10":
-                        Console.WriteLine("[1]Input Quantity");
-                        Console.WriteLine("[2] return");
-                        Console.Write("\nEnter 1 to set quantity or 2 to return: ");
+                        Console.WriteLine("[1] Input Quantity");
+                        Console.WriteLine("[x] Return");
+                        Console.Write("\nSelect option: ");
                         string input9 = Console.ReadLine();
 
                         if (input9.Equals("1"))
@@ -382,7 +412,7 @@ namespace GroceryStoreDiscountCalculator
                             cart.addCart(product);
                             continue;
                         }
-                        if (input9.Equals("2"))
+                        if (input9.Equals("x") || input9.Equals("X"))
                         {
                             Console.Clear();
                             continue;
@@ -396,111 +426,602 @@ namespace GroceryStoreDiscountCalculator
             }
         }
     }
-    public class Fruits{
+    public class Fruits
+    {
+        AddCart cart;
+        public Fruits (AddCart cart)
+        {
+            this.cart = cart;
+        }
         public void fruitsMenu()
         {
-            while (true)
+            bool valid = true;
+            while (valid)
             {
                 ArrayList fruitList = new ArrayList{
-                    new object[] {"Apple", 20.01},
-                    new object[] {"Banana", 30.00},
-                    new object[] {"Grapes", 60.00},
-                    new object[] {"Mango", 50.00},
-                    new object[] {"Orange", 40.00},
-                    new object[] {"Papaya", 45.00},
-                    new object[] {"Strawberry", 55.00},
-                    new object[] {"Watermelon", 35.00}
+                    new object[] {"Apple", 20.00, 0},
+                    new object[] {"Banana", 30.00, 0},
+                    new object[] {"Blueberry", 75.00, 0 },
+                    new object[] {"Coconut", 20.00, 0 },
+                    new object[] {"Grapes", 60.00, 0 },
+                    new object[] {"Mango", 50.00 , 0 },
+                    new object[] {"Orange", 40.00, 0 },
+                    new object[] {"Papaya", 45.00, 0 },
+                    new object[] {"Strawberry", 55.00, 0 },
+                    new object[] {"Watermelon", 35.00, 0 }
                 };
-
-                Console.WriteLine("============= FRUITS =============");
-                for (int i = 0; i < fruitList.Count; i++) {
-                    object[] fruit = (object[]) fruitList[i];
-                    Console.WriteLine($"{i + 1,2}. {fruit[0],-15} PHP {fruit[1],8:F2}");
+                Console.WriteLine("================================= FRUITS ================================");
+                Console.WriteLine("[0] Search an Item");
+                Console.WriteLine("===== PRODUCT ======================================== PRICE PER KG =====");
+                for (int i = 0; i < fruitList.Count; i++){
+                    object[] fruit = (object[])fruitList[i];
+                    Console.WriteLine($"{i + 1,2}. {fruit[0],-50} PHP {fruit[1],8:F2}");
                 }
-                Console.WriteLine("[x] Return to Main Menu");
-                Console.WriteLine("=================================");
+                Console.WriteLine("\n[x] Return to Main Menu");
+                Console.WriteLine("=========================================================================");
 
+                Console.WriteLine("Enter product number: ");
                 string choice = Console.ReadLine();
+                Console.Clear();
 
-                switch (choice)
-                {
-                    case "1":
+                switch (choice){
+                    case "0":
                         Console.WriteLine("Enter an item (fruit) to search: ");
                         string userFruit = Console.ReadLine();
 
                         bool found = false;
 
-                            foreach (object[] item in fruitList) { 
-                                string fruitName = item[0].ToString().ToLower();
-                                if (fruitName.StartsWith(userFruit)){
-                                        Console.WriteLine($"Item: {item[0]} Price: Php {item[1]}");
-                                        found = true;
-                                       // break;
-                                }
-                            } 
+                        foreach (object[] item in fruitList){
+                            string fruitName = item[0].ToString().ToLower();
+                            if (fruitName.StartsWith(userFruit)){
+                                Console.WriteLine($"Item: {item[0]} Price: Php {item[1]}");
+                                found = true;
+                            }
+                        }
                         if (!found){
                             Console.WriteLine("Item not found.");
                         }
                         break;
+                    case "1":
+                        while (true){
+                            Console.WriteLine("[1] Enter Quantity");
+                            Console.WriteLine("[x] Return");
+                            Console.WriteLine("Select option: ");
+                            string appleChoice = Console.ReadLine();
+                            if (appleChoice == "1"){
+                                object[] fruit = (object[])fruitList[0];
+                                Console.WriteLine("How many would you like to buy: ");
+                                int appleQuantity = Convert.ToInt16(Console.ReadLine());
+                                Console.Clear();
+                                fruit[2] = appleQuantity;
+                                cart.addCart(fruit);
+                                break;
+                            }
+                            else if (appleChoice == "x" || appleChoice == "X"){
+                                Console.Clear();
+                                break;
+                            } else{
+                                Console.WriteLine("Invalid input. Please try again.");
+                                break;
+                            }
+                        }
+                        break;
                     case "2":
-                        Console.WriteLine("Enter Quantity: ");
-                        int appleQuantity = Convert.ToInt16(Console.ReadLine());
+                        while (true){
+                            Console.WriteLine("[1] Enter Quantity");
+                            Console.WriteLine("[x] Return to Fruits Menu");
+                            Console.WriteLine("Select option: ");
+                            string bananaChoice = Console.ReadLine();
+                            if (bananaChoice == "1"){
+                                object[] fruit = (object[])fruitList[0];
+                                Console.WriteLine("How many would you like to buy: ");
+                                int bananaQuantity = Convert.ToInt16(Console.ReadLine());
+                                Console.Clear();
+                                fruit[2] = bananaQuantity;
+                                cart.addCart(fruit);
+                                break;
+                            } else if (bananaChoice == "x" || bananaChoice == "X"){
+                                Console.Clear();
+                                break;
+                            } else {
+                                Console.WriteLine("Invalid input. Please try again.");
+                                break;
+                            }
+                        }
                         break;
                     case "3":
-                        Console.WriteLine("Enter Quantity: ");
-                        int bananaQuantity = Convert.ToInt16(Console.ReadLine());
+                        while (true){
+                            Console.WriteLine("[1] Enter Quantity");
+                            Console.WriteLine("[x] Return to Fruits Menu");
+                            Console.WriteLine("Select option: ");
+                            string blueberryChoice = Console.ReadLine();
+                            if (blueberryChoice == "1"){
+                                object[] fruit = (object[])fruitList[0];
+                                Console.WriteLine("How many would you like to buy: ");
+                                int blueberryQuantity = Convert.ToInt16(Console.ReadLine());
+                                Console.Clear();
+                                fruit[2] = blueberryQuantity;
+                                cart.addCart(fruit);
+                            } else if (blueberryChoice == "x" || blueberryChoice == "X"){
+                                Console.Clear();
+                                break;
+                            } else {
+                                Console.WriteLine("Invalid input. Please try again.");
+                                break;
+                            }
+                        }
                         break;
                     case "4":
-                        Console.WriteLine("Enter Quantity: ");
-                        int grapesQuantity = Convert.ToInt16(Console.ReadLine());
+                        while (true) {
+                            Console.WriteLine("[1] Enter Quantity");
+                            Console.WriteLine("[x] Return to Fruits Menu");
+                            string coconutChoice = Console.ReadLine();
+                            if (coconutChoice == "1"){
+                                object[] fruit = (object[])fruitList[0];
+                                Console.WriteLine("How many would you like to buy: ");
+                                int coconutQuantity = Convert.ToInt16(Console.ReadLine());
+                                Console.Clear();
+                                fruit[2] = coconutQuantity;
+                                cart.addCart(fruit);
+                            } else if (coconutChoice == "x" || coconutChoice == "X"){
+                                break;
+                            } else {
+                                Console.WriteLine("Invalid input. Please try again.");
+                            }
+                            break;
+                        }
                         break;
                     case "5":
-                        Console.WriteLine("Enter Quantity: ");
-                        int mangoQuantity = Convert.ToInt16(Console.ReadLine());
+                        while (true){
+                            Console.WriteLine("[1] Enter Quantity");
+                            Console.WriteLine("[x] Return to Fruits Menu");
+                            string grapesChoice = Console.ReadLine();
+                            if (grapesChoice == "1"){
+                                object[] fruit = (object[])fruitList[0];
+                                Console.WriteLine("How many would you like to buy: ");
+                                int grapesQuantity = Convert.ToInt16(Console.ReadLine());
+                                fruit[2] = grapesQuantity;
+                                cart.addCart(fruit);
+                            } else if (grapesChoice == "x" || grapesChoice == "X") {
+                                break;
+                            } else {
+                                Console.WriteLine("Invalid input. Please try again.");
+                            }
+                        }
                         break;
                     case "6":
-                        Console.WriteLine("Enter Quantity: ");
-                        int orangeQuantity = Convert.ToInt16(Console.ReadLine());
+                        while (true)
+                        {
+                            Console.WriteLine("[1] Enter Quantity");
+                            Console.WriteLine("[2] Return to Fruits Menu");
+                            string mangoChoice = Console.ReadLine();
+                            if (mangoChoice == "1")
+                            {
+                                object[] fruit = (object[])fruitList[0];
+                                Console.WriteLine("How many would you like to buy: ");
+                                int mangoQuantity = Convert.ToInt16(Console.ReadLine());
+                                fruit[2] = mangoQuantity;
+                                cart.addCart(fruit);
+                            }
+                            else if (mangoChoice == "x" || mangoChoice == "X")
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Invalid input. Please try again.");
+                            }
+                        }
                         break;
                     case "7":
-                        Console.WriteLine("Enter Quantity: ");
-                        int papayaQuantity = Convert.ToInt16(Console.ReadLine());
+                        while (true)
+                        {
+                            Console.WriteLine("[1] Enter Quantity");
+                            Console.WriteLine("[x] Return to Fruits Menu");
+                            string orangeChoice = Console.ReadLine();
+                            if (orangeChoice == "1")
+                            {
+                                object[] fruit = (object[])fruitList[0];
+                                Console.WriteLine("How many would you like to buy: ");
+                                int orangeQuantity = Convert.ToInt16(Console.ReadLine());
+                                fruit[2] = orangeQuantity;
+                                cart.addCart(fruit);
+                            }
+                            else if (orangeChoice == "x" || orangeChoice == "X")
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Invalid input. Please try again.");
+                            }
+                        }
                         break;
                     case "8":
-                        Console.WriteLine("Enter Quantity: ");
-                        int strawberryQuantity = Convert.ToInt16(Console.ReadLine());
+                        while (true)
+                        {
+                            Console.WriteLine("[1] Enter Quantity");
+                            Console.WriteLine("[x] Return to Fruits Menu");
+                            string papayaChoice = Console.ReadLine();
+                            if (papayaChoice == "1")
+                            {
+                                object[] fruit = (object[])fruitList[0];
+                                Console.WriteLine("How many would you like to buy: ");
+                                int papayaQuantity = Convert.ToInt16(Console.ReadLine());
+                                fruit[2] = papayaQuantity;
+                                cart.addCart(fruit);
+                            }
+                            else if (papayaChoice == "x" || papayaChoice == "X")
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Invalid input, Please try again.");
+                            }
+                        }
                         break;
                     case "9":
-                        Console.WriteLine("Enter Quantity: ");
-                        int watermelonQuantity = Convert.ToInt16(Console.ReadLine());
+                        while (true)
+                        {
+                            Console.WriteLine("[1] Enter Quantity");
+                            Console.WriteLine("[x] Return to Fruits Menu");
+                            string strawberryChoice = Console.ReadLine();
+                            if (strawberryChoice == "1")
+                            {
+                                object[] fruit = (object[])fruitList[0];
+                                Console.WriteLine("How many would you like to buy: ");
+                                int strawberryQuantity = Convert.ToInt16(Console.ReadLine());
+                                fruit[2] = strawberryQuantity;
+                                cart.addCart(fruit);
+                            }
+                            else if (strawberryChoice == "x" || strawberryChoice == "X")
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Invalid input. Please try again.");
+                            }
+                        }
+                        break;
+                    case "10":
+                        while (true)
+                        {
+                            Console.WriteLine("[1] Enter Quantity");
+                            Console.WriteLine("[x] Return to Fruits Menu");
+                            string watermelonChoice = Console.ReadLine();
+                            if (watermelonChoice == "1")
+                            {
+                                object[] fruit = (object[])fruitList[0];
+                                Console.WriteLine("How many would you like to buy: ");
+                                int watermelonQuantity = Convert.ToInt16(Console.ReadLine());
+                                fruit[2] = watermelonQuantity;
+                                cart.addCart(fruit);
+                            }
+                            else if (watermelonChoice == "x" || watermelonChoice == "X")
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Invalid input. Please try again.");
+                            }
+                        }
                         break;
                     case "x":
                     case "X":
-                        Console.Write("Returning to Main Menu.");
-                        try
+                        valid = false;
+                        break;
+                    default:
+                        Console.WriteLine("Invalid input. Please try again.");
+                        break;
+                }
+            }
+        }
+    }
+    public class Vegetables
+    {
+        AddCart cart;
+        public Vegetables(AddCart cart) { 
+            this.cart = cart;
+        }
+        public void veggieMenu()
+        {
+            bool valid = true;
+            while (valid)
+            {
+                ArrayList veggieList = new ArrayList{
+                    new object[] {"Beans", 60.00, 0 },
+                    new object[] {"Broccoli", 75.00, 0 },
+                    new object[] {"Cabbage", 85.00, 0 },
+                    new object[] {"Carrot", 20.00, 0 },
+                    new object[] {"Cucumber", 55.00, 0 },
+                    new object[] {"Eggplant", 50.00, 0 },
+                    new object[] {"Garlic", 40.00, 0 },
+                    new object[] {"Ginger", 45.00, 0 },
+                    new object[] {"Onion", 35.00, 0 },
+                    new object[] {"Potato", 60.00, 0 }
+                };
+                Console.WriteLine("============================== VEGETABLES ===============================");
+                Console.WriteLine("[0] Search an Item");
+                Console.WriteLine("===== PRODUCT ======================================== PRICE PER KG =====");
+                for (int i = 0; i < veggieList.Count; i++)
+                {
+                    object[] veggie = (object[])veggieList[i];
+                    Console.WriteLine($"{i + 1,2}. {veggie[0],-15} PHP {veggie[1],8:F2}");
+                }
+                Console.WriteLine("\n[x] Return to Main Menu");
+                Console.WriteLine("=========================================================================");
+
+                Console.WriteLine("Enter the assigned number of your desired product: ");
+                string choice = Console.ReadLine();
+                Console.Clear();
+
+                switch (choice)
+                {
+                    case "0":
+                        Console.WriteLine("Enter an item (vegetable) to search: ");
+                        string userVeggie = Console.ReadLine();
+
+                        bool found = false;
+
+                        foreach (object[] item in veggieList)
                         {
-                            Thread.Sleep(1000);
+                            string veggieName = item[0].ToString().ToLower();
+                            if (veggieName.StartsWith(userVeggie))
+                            {
+                                Console.WriteLine($"Item: {item[0]} Price: Php {item[1]}");
+                                found = true;
+                                // break;
+                            }
                         }
-                        catch (Exception e)
+                        if (!found)
                         {
+                            Console.WriteLine("Item not found.");
                         }
-                        Console.Write(".");
-                        try
+                        break;
+                    case "1":
+                        while (true)
                         {
-                            Thread.Sleep(500);
+                            Console.WriteLine("[1] Enter Quantity");
+                            Console.WriteLine("[x] Return to Vegetables Menu");
+                            string beansChoice = Console.ReadLine();
+                            if (beansChoice == "1")
+                            {
+                                object[] veggies = (object[])veggieList[0];
+                                Console.WriteLine("How many would you like to buy: ");
+                                int beansQuantity = Convert.ToInt16(Console.ReadLine());
+                                veggies[2] = beansQuantity;
+                                cart.addCart(veggies);
+                            }
+                            else if (beansChoice == "x" || beansChoice == "X")
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Invalid input. Please try again.");
+                            }
                         }
-                        catch (Exception e)
+                        break;
+                    case "2":
+                        while (true)
                         {
+                            Console.WriteLine("[1] Enter Quantity");
+                            Console.WriteLine("[x] Return to Vegetables Menu");
+                            string broccoliChoice = Console.ReadLine();
+                            if (broccoliChoice == "1")
+                            {
+                                object[] veggies = (object[])veggieList[0];
+                                Console.WriteLine("How many would you like to buy: ");
+                                int broccoliQuantity = Convert.ToInt16(Console.ReadLine());
+                                veggies[2] = broccoliQuantity;
+                                cart.addCart(veggies);
+                            }
+                            else if (broccoliChoice == "x" || broccoliChoice == "X")
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Invalid input. Please try again.");
+                            }
                         }
-                        Console.Write(".");
-                        try
+                        break;
+                    case "3":
+                        while (true)
                         {
-                            Thread.Sleep(1000);
+                            Console.WriteLine("[1] Enter Quantity");
+                            Console.WriteLine("[x] Return to Vegetables Menu");
+                            string cabbageChoice = Console.ReadLine();
+                            if (cabbageChoice == "1")
+                            {
+                                object[] veggies = (object[])veggieList[0];
+                                Console.WriteLine("How many would you like to buy: ");
+                                int cabbageQuantity = Convert.ToInt16(Console.ReadLine());
+                                veggies[2] = cabbageQuantity;
+                                cart.addCart(veggies);
+                            }
+                            else if (cabbageChoice == "x" || cabbageChoice == "X")
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Invalid input. Please try again.");
+                            }
                         }
-                        catch (Exception e)
+                        break;
+                    case "4":
+                        while (true)
                         {
+                            Console.WriteLine("[1] Enter Quantity");
+                            Console.WriteLine("[x] Return to Fruits Menu");
+                            string carrotChoice = Console.ReadLine();
+                            if (carrotChoice == "1")
+                            {
+                                object[] veggies = (object[])veggieList[0];
+                                Console.WriteLine("How many would you like to buy: ");
+                                int carrotQuantity = Convert.ToInt16(Console.ReadLine());
+                                veggies[2] = carrotQuantity;
+                                cart.addCart(veggies);
+                            }
+                            else if (carrotChoice == "x" || carrotChoice == "X")
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Invalid input. Please try again.");
+                            }
                         }
-                        return;
+                        break;
+                    case "5":
+                        while (true)
+                        {
+                            Console.WriteLine("[1] Enter Quantity");
+                            Console.WriteLine("[x] Return to Fruits Menu");
+                            string cucumberChoice = Console.ReadLine();
+                            if (cucumberChoice == "1")
+                            {
+                                object[] veggies = (object[])veggieList[0];
+                                Console.WriteLine("How many would you like to buy: ");
+                                int cucumberQuantity = Convert.ToInt16(Console.ReadLine());
+                                veggies[2] = cucumberQuantity;
+                                cart.addCart(veggies);
+                            }
+                            else if (cucumberChoice == "x" || cucumberChoice == "X")
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Invalid input. Please try again.");
+                            }
+                        }
+                        break;
+                    case "6":
+                        while (true) {
+                            Console.WriteLine("[1] Enter Quantity");
+                            Console.WriteLine("[x] Return to Fruits Menu");
+                            string eggplantChoice = Console.ReadLine();
+                            if (eggplantChoice == "1")
+                            {
+                                object[] veggies = (object[])veggieList[0];
+                                Console.WriteLine("How many would you like to buy: ");
+                                int eggplantQuantity = Convert.ToInt16(Console.ReadLine());
+                                veggies[2] = eggplantQuantity;
+                                cart.addCart(veggies);
+                            }
+                            else if (eggplantChoice == "x" || eggplantChoice == "X")
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Invalid input. Please try again.");
+                            }
+                            break;
+                        }
+                        break;
+                    case "7":
+                        while (true)
+                        {
+                            Console.WriteLine("[1] Enter Quantity");
+                            Console.WriteLine("[x] Return to Fruits Menu");
+                            string garlicChoice = Console.ReadLine();
+                            if (garlicChoice == "1")
+                            {
+                                object[] veggies = (object[])veggieList[0];
+                                Console.WriteLine("How many would you like to buy: ");
+                                int garlicQuantity = Convert.ToInt16(Console.ReadLine());
+                                veggies[2] = garlicQuantity;
+                                cart.addCart(veggies);
+                            }
+                            else if (garlicChoice == "x" || garlicChoice == "X")
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Invalid input. Please try again.");
+                            }
+                        }
+                        break;
+                    case "8":
+                        Console.WriteLine("[1] Enter Quantity");
+                        Console.WriteLine("[x] Return to Fruits Menu");
+                        string gingerChoice = Console.ReadLine();
+                        if (gingerChoice == "1")
+                        {
+                            object[] veggies = (object[])veggieList[0];
+                            Console.WriteLine("How many would you like to buy: ");
+                            int gingerQuantity = Convert.ToInt16(Console.ReadLine());
+                            veggies[2] = gingerQuantity;
+                            cart.addCart(veggies);
+                        }
+                        else if (gingerChoice == "x" || gingerChoice == "X")
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid input. Please try again.");
+                        }
+                        break;
+                    case "9":
+                        while (true)
+                        {
+                            Console.WriteLine("[1] Enter Quantity");
+                            Console.WriteLine("[x] Return to Fruits Menu");
+                            string onionChoice = Console.ReadLine();
+                            if (onionChoice == "1")
+                            {
+                                object[] veggies = (object[])veggieList[0];
+                                Console.WriteLine("How many would you like to buy: ");
+                                int onionQuantity = Convert.ToInt16(Console.ReadLine());
+                                veggies[2] = onionQuantity;
+                                cart.addCart(veggies);
+                            }
+                            else if (onionChoice == "x" || onionChoice == "X")
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Invalid input. Please try again.");
+                            }
+                        }
+                        break;
+                    case "10":
+                        while (true)
+                        {
+                            Console.WriteLine("[1] Enter Quantity");
+                            Console.WriteLine("[x] Return to Fruits Menu");
+                            string potatoChoice = Console.ReadLine();
+                            if (potatoChoice == "1")
+                            {
+                                object[] veggies = (object[])veggieList[0];
+                                Console.WriteLine("How many would you like to buy: ");
+                                int potatoQuantity = Convert.ToInt16(Console.ReadLine());
+                                veggies[26] = potatoQuantity;
+                                cart.addCart(veggies);
+                            }
+                            else if (potatoChoice == "x" || potatoChoice == "X")
+                            {
+                                return;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Invalid input. Please try again.");
+                            }
+                        }
+                        break;
+                    case "x":
+                    case "X":
+                        valid = false;
+                        break;
                     default:
                         Console.WriteLine("Invalid input. Please try again.");
                         break;
