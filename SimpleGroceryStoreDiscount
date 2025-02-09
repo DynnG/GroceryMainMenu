@@ -1,0 +1,75 @@
+using System;
+
+class GroceryStoreDiscount{
+    static void Main(string[] args){
+        double totalCost = 0;
+
+        try{
+            while (true){
+                Console.Write("Enter product name: ");
+                string productName = Console.ReadLine();
+                
+                // Ensure product name is not empty
+                if (string.IsNullOrWhiteSpace(productName)){
+                    Console.WriteLine("Product name cannot be empty. Please try again.");
+                    continue;
+                }
+
+                int quantity;
+                while (true){
+                    Console.Write($"\nEnter quantity of {productName}: ");
+                    if (int.TryParse(Console.ReadLine(), out quantity) && quantity > 0){
+                        break;
+                    }
+                    Console.WriteLine("Invalid input! Quantity must be a positive integer.");
+                }
+
+                double price;
+                while (true){
+                    Console.Write($"\nEnter price per unit of {productName}: ");
+                    if (double.TryParse(Console.ReadLine(), out price) && price > 0){
+                        break;
+                    }
+                    Console.WriteLine("Invalid input! Price must be a positive number.");
+                }
+
+                double productCost = quantity * price;
+                totalCost += productCost;
+
+                Console.Write("\nWould you like to add another product? [yes or no]: ");
+                string response = Console.ReadLine()?.ToLower();
+
+                if (response != "yes"){
+                    break;
+                }
+            }
+
+            double discountPercentage = DiscountCalc(totalCost);
+            double discountAmount = totalCost * discountPercentage;
+            double finalAmount = totalCost - discountAmount;
+
+            Console.WriteLine("\n================ BILL ================");
+            Console.WriteLine($"\tSubtotal: PHP {totalCost:F2}");
+            Console.WriteLine($"\tDiscount: {discountPercentage * 100:F2}% (PHP {discountAmount:F2})");
+            Console.WriteLine($"\n\tTotal Amount: PHP {finalAmount:F2}");
+            Console.WriteLine("======================================");
+        }
+        catch (Exception ex) // Catch any unexpected error
+        {
+            Console.WriteLine($"An unexpected error occurred: {ex.Message}");
+        }
+    }
+
+    public static double DiscountCalc(double totalCost)
+    {
+        if (totalCost > 500){
+            return 0.20;
+        } else if (totalCost > 200){
+            return 0.15;
+        } else if (totalCost > 100){
+            return 0.10;
+        } else{
+            return 0.00;
+        }
+    } 
+}
