@@ -19,7 +19,7 @@ namespace GroceryStoreDiscountCalculator
             Fruits fruit = new Fruits(cart);
             Vegetables veggie = new Vegetables(cart);
             Snacks sncks = new Snacks(cart);
-            Sweets sweet = new Sweets();
+            Sweets sweet = new Sweets(cart);
 
             Boolean valid = true;
             while (valid)
@@ -55,6 +55,10 @@ namespace GroceryStoreDiscountCalculator
                         veggie.veggieMenu();
                         break;
                     case "5":
+                        sncks.snacksMenu();
+                        break;
+                    case "6":
+                        sweet.sweetsMenu();
                         break;
                     case "x":
                         cart.showCart();
